@@ -1,5 +1,6 @@
 package prank;
 
+import SMTP.Smtp;
 import config.*;
 
 import model.Group;
@@ -18,6 +19,7 @@ public class prankGenerator {
     String serverAddress;
     int serverPort;
     int nbGroup;
+    Smtp smtp;
 
     Vector<Person> listPerson = new Vector<>();
     Vector<Message> listMessage = new Vector<>();
@@ -70,9 +72,8 @@ public class prankGenerator {
             e.printStackTrace();
         }
 
-        generator();
-        createPrankMail();
-        ExempleENVOIE();
+        smtp = new Smtp(serverAddress, serverPort);
+
     }
 
     /*
@@ -117,7 +118,7 @@ public class prankGenerator {
             int groupSize = nbPers / nbGroup;
             for (int j = i * groupSize ; j  < groupSize * (i + 1); j++) {
                 listGroup.get(i).addPersonGroup(listPerson.get(j));
-                System.out.println("dans groupe " + i + " = personne" + j);
+                //System.out.println("dans groupe " + i + " = personne" + j);
             }
         }
 
@@ -148,23 +149,19 @@ public class prankGenerator {
         return listMessage.get(index).getMsg();
     }
 
+
+    public void activate() {
+        generator();
+        createPrankMail();
+        sendAllPrank(smtp);
+    }
+
     /*
-    Impossible de communiquer avec Mock, simple affichage des mail dans la console pour l'instant
-     */
-
-    public void ExempleENVOIE(){
-
-        for (int i = 0; i < listMail.size(); i++){
-            System.out.println(serverAddress + " " + serverPort);
-            System.out.println("EHLO " + serverAddress);
-            System.out.println("MAIL FROM:" + listMail.get(i).getSender().getAddressMail());
-            System.out.println("RCPT TP:" + listMail.get(i).getRecever().getAddressMail());
-            System.out.println("DATA");
-            System.out.println("From: " + listMail.get(i).getSender().getAddressMail());
-            System.out.println("Subject: " + listMail.get(i).getSubject());
-            System.out.println(listMail.get(i).getBody());
-            System.out.println(".");
-            System.out.println("quit\n");
+    balance tout les mail sur mock
+    */
+    public void sendAllPrank(Smtp s){
+        for(Mail m : listMail){
+            s.sendPrank(m);
         }
     }
 }
