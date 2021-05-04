@@ -5,7 +5,6 @@ import config.ConfigurationModel;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -13,6 +12,7 @@ import java.util.logging.Logger;
  */
 public class SmtpClientService implements IMailClientService {
     private final static Logger LOG = Logger.getLogger(SmtpClientService.class.getName());
+    private final static String LINE_RETURN = "\r\n";
 
     private final ConfigurationModel configuration;
     private BufferedReader in;
@@ -34,7 +34,8 @@ public class SmtpClientService implements IMailClientService {
 
             var serverVersion = in.readLine();
             System.out.println("connected to: " + serverVersion);
-            send(out, "EHLO server"); // 1. send greetings server
+            sendHello(in, out, "server");
+            sendMailFrom(in, out, mailModel.SenderEmail);
             send(out, "MAIL FROM:<" + mailModel.SenderEmail + ">");
 
             for (String destinatairesEmail : mailModel.DestinatairesEmails) {
@@ -53,12 +54,40 @@ public class SmtpClientService implements IMailClientService {
             out.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * send the 
+     * @param in
+     * @param out
+     * @param senderEmail
+     */
+    private void sendMailFrom(BufferedReader in, BufferedWriter out, String senderEmail) {
+    }
+
+    /**
+     * initiate the EHLO sequence
+     * @param in bufferedReader of socket stream
+     * @param out bufferedWriter of socket stream
+     */
+    private void sendHello(BufferedReader in, BufferedWriter out, String Name) throws Exception {
+        String line = null;
+        send(out, "EHLO " + Name + LINE_RETURN);
+
+        while ((line = in.readLine()) != null) {
+            System.out.println("received: "  + line);
+            if(line.startsWith("250 ")){
+                break;
+            }
         }
     }
 
     private void send(BufferedReader in, BufferedWriter out, String s) {
         try {
-            out.write(s + "\n");
+            out.write(s + LINE_RETURN);
             out.flush();
             System.out.println(s);
             s = in.readLine();
@@ -71,7 +100,7 @@ public class SmtpClientService implements IMailClientService {
 
     private void send(BufferedWriter out, String s) {
         try {
-            out.write(s + "\n");
+            out.write(s + LINE_RETURN);
             out.flush();
             System.out.println(s);
         }
