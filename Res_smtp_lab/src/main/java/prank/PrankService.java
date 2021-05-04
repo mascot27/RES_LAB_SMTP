@@ -2,8 +2,7 @@ package prank;
 
 import mail.MailModel;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PrankService implements IPrankService {
 
@@ -13,24 +12,39 @@ public class PrankService implements IPrankService {
         this.prankMessageService = prankMessageService;
     }
 
+
     @Override
     public List<MailModel> getMailsForCampagne(CampagneModel campagne) {
         var mailsToSend = new ArrayList<MailModel>();
+        var numberOfGroups = campagne.Victims.size() / campagne.MinNumberOfVictimsByGroup;
+        Collections.shuffle(campagne.Victims);
 
+        var iterator = campagne.Victims.iterator();
 
-        // TODO: constitution des groups
+        // construit le mail de prank pour chaque groupe
+        for(int i = 0; i < numberOfGroups; i++){
+            var mail = new MailModel();
+            var message = prankMessageService.getPrankMessage();
+            mail.Subject = message.Title;
+            mail.Body = message.Text;
 
-        var mail = new MailModel();
-        var message = prankMessageService.getPrankMessage();
-        mail.Subject = message.Title;
-        mail.Body = message.Text;
+            if(!iterator.hasNext()){
+                throw new RuntimeException("Il y a moins de victimes que de groupes");
+            }
 
+            mail.SenderEmail = iterator.next();
+            mailsToSend.add(mail);
+        }
 
-        mail.SenderEmail = "jean.luc@heig-vd.ch";
-        mail.DestinatairesEmails.add("asdasd@heig-vd.ch");
-        mail.DestinatairesEmails.add("asda123sd@heig-vd.ch");
+        // ajout des destinataires
+        int mailIndex = 0;
+        while(iterator.hasNext()){
+            var mail = mailsToSend.get(mailIndex);
+            mail.DestinatairesEmails.add(iterator.next());
+            mailIndex = (mailIndex + 1) % (numberOfGroups);
+        }
 
-        mailsToSend.add(mail);
         return mailsToSend;
     }
+
 }
