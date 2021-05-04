@@ -28,7 +28,7 @@ public class SmtpClientService implements IMailClientService {
     public void sendMail(MailModel mailModel) {
         // see: https://www.javatpoint.com/socket-programming
         // https://www.codejava.net/java-se/networking/java-socket-client-examples-tcp-ip
-
+        // https://tools.ietf.org/html/rfc5321#appendix-D
         try {
             Socket socket = new Socket("127.0.0.1", 2525);
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
@@ -39,15 +39,15 @@ public class SmtpClientService implements IMailClientService {
             sendHello(in, out, "server");
             sendMailFrom(in, out, mailModel.SenderEmail);
             sendRcptTo(in, out, mailModel.DestinatairesEmails);
-
             sendData(in, out);
+            send(out, "From: " + mailModel.SenderEmail);
+            send(out, "Subject: " + mailModel.Subject);
+            send(out, "To: " + String.join(",", mailModel.DestinatairesEmails));
 
-            send(out, "Subject: In the place");
-            send(out, "From: Mickey Mouse <Mickey.Mouse@Mickey.com>");
-            // message body
-            send(out, "I'm alive. Help me!");
-            send(out, "\n.\n");
+            send(out, mailModel.Body);
+            send(in, out, CL_RF + "." + CL_RF);
             send(out, "QUIT");
+
             socket.close();
             in.close();
             out.close();
