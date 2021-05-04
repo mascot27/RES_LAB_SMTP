@@ -22,7 +22,7 @@ public class PrankApplication {
         CampagneModel campagne = new CampagneModel();
         campagne.MinNumberOfVictimsByGroup = 3;
         campagne.Victims.add("corentin.zeller@heig-vd.ch");
-        campagne.Victims.add("dponads.i@heig-vd.ch");
+        campagne.Victims.add("donald.duck@heig-vd.ch");
         campagne.Victims.add("fred.dupont@heig-vd.ch");
 
         // 2) send it to the moon
