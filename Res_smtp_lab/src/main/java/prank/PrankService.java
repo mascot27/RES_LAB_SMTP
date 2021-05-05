@@ -21,6 +21,8 @@ public class PrankService implements IPrankService {
 
         var iterator = campagne.Victims.iterator();
 
+        /*
+
         // construit le mail de prank pour chaque groupe
         for(int i = 0; i < numberOfGroups; i++){
             var mail = new MailModel();
@@ -43,6 +45,9 @@ public class PrankService implements IPrankService {
             mail.DestinatairesEmails.add(iterator.next());
             mailIndex = (mailIndex + 1) % (numberOfGroups);
         }
+
+        */
+
 
         return mailsToSend;
     }

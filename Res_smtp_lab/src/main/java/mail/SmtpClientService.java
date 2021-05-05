@@ -30,21 +30,23 @@ public class SmtpClientService implements IMailClientService {
         // https://www.codejava.net/java-se/networking/java-socket-client-examples-tcp-ip
         // https://tools.ietf.org/html/rfc5321#appendix-D
         try {
-            Socket socket = new Socket("127.0.0.1", 2525);
+            Socket socket = new Socket(configuration.SmtpServerAddress, configuration.SmtpServerPort);
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
             in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+
 
             System.out.println("connected to: " + in.readLine());
             // smtp sequence
             sendHello(in, out, "server");
-            sendMailFrom(in, out, mailModel.SenderEmail);
-            sendRcptTo(in, out, mailModel.DestinatairesEmails);
-            sendData(in, out);
-            send(out, "From: " + mailModel.SenderEmail);
-            send(out, "Subject: " + mailModel.Subject);
-            send(out, "To: " + String.join(",", mailModel.DestinatairesEmails));
 
-            send(out, mailModel.Body);
+            sendMailFrom(in, out, mailModel.getSender().getAddressMail());
+            sendRcptTo(in, out, mailModel.getRecever().getAddressMail());
+            sendData(in, out);
+            send(out, "From: " + mailModel.getSender().getAddressMail());
+            send(out, "Subject: " + mailModel.getSubject());
+            send(out, "To: " + String.join(",", mailModel.getRecever().getAddressMail())+ CL_RF);
+
+            send(out, mailModel.getBody());
             send(in, out, CL_RF + "." + CL_RF);
             send(out, "QUIT");
 
@@ -69,17 +71,15 @@ public class SmtpClientService implements IMailClientService {
         }
     }
 
-    private void sendRcptTo(BufferedReader in, BufferedWriter out, List<String> destinatairesEmails) throws IOException {
+    private void sendRcptTo(BufferedReader in, BufferedWriter out, String destinatairesEmails) throws IOException {
         String line;
-        for (String email : destinatairesEmails) {
-            send(out, "RCPT TO:<" + email + ">");
+            send(out, "RCPT TO:<" + destinatairesEmails + ">");
             while ((line = in.readLine()) != null) {
                 System.out.println("received: "  + line);
                 if(line.startsWith("250 ")){ // wait for ok signal
                     break;
                 }
             }
-        }
     }
 
     /**

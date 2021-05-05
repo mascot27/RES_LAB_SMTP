@@ -2,13 +2,15 @@ package config;
 
 public class ConfigurationService implements IConfigurationService {
 
+    ConfigurationModel config = new ConfigurationModel();
     @Override
     public ConfigurationModel GetConfiguration() {
-        var config = new ConfigurationModel();
-        // TODO: get value from file
-        config.SmtpServerPort = 2525;
-        config.SmtpServerAddress = "localhost";
-
         return config;
     }
+
+    public ConfigurationService(String s, int i){
+        config.SmtpServerPort = i;
+        config.SmtpServerAddress = s;
+    }
+
 }
