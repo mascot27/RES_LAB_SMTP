@@ -1,6 +1,7 @@
 package prankCampagne;
 
-import mail.MailModel;
+import config.IConfigurationService;
+import mail.Mail;
 import prankMessage.IPrankMessageProviderService;
 import victims.IVictimsProviderService;
 
@@ -10,50 +11,67 @@ public class PrankService implements IPrankService {
 
     private final IPrankMessageProviderService prankMessageService;
     private final IVictimsProviderService victimsProviderService;
+    private final IConfigurationService configurationService;
 
-    public PrankService(IPrankMessageProviderService prankMessageService, IVictimsProviderService victimsProviderService) {
+    public PrankService(
+            IPrankMessageProviderService prankMessageService,
+            IVictimsProviderService victimsProviderService,
+            IConfigurationService configurationService) {
         this.prankMessageService = prankMessageService;
         this.victimsProviderService = victimsProviderService;
+        this.configurationService = configurationService;
     }
 
 
     @Override
-    public List<MailModel> getMailsForCampagne() {
-        var mailsToSend = new ArrayList<MailModel>();
-        var numberOfGroups = campagne.Victims.size() / campagne.MinNumberOfVictimsByGroup;
-        Collections.shuffle(campagne.Victims);
+    public List<Mail> getMailsForCampagne() {
+        var mailsToSend = new ArrayList<Mail>();
 
-        var iterator = campagne.Victims.iterator();
+        var victims = victimsProviderService.GetVictims();
+        List<VictimGroup> groups = makeGroups(configurationService.GetConfiguration().nbGroups, victims);
 
-        /*
-
-        // construit le mail de prank pour chaque groupe
-        for(int i = 0; i < numberOfGroups; i++){
-            var mail = new MailModel();
+        for (VictimGroup group : groups) {
+            var mail = new Mail();
             var message = prankMessageService.getPrankMessage();
             mail.Subject = message.Title;
             mail.Body = message.Text;
+            mail.Sender = group.Sender;
+            mail.Recipients = group.Recipients;
 
-            if(!iterator.hasNext()){
-                throw new RuntimeException("Il y a moins de victimes que de groupes");
-            }
-
-            mail.SenderEmail = iterator.next();
             mailsToSend.add(mail);
         }
 
-        // ajout des destinataires
-        int mailIndex = 0;
-        while(iterator.hasNext()){
-            var mail = mailsToSend.get(mailIndex);
-            mail.DestinatairesEmails.add(iterator.next());
-            mailIndex = (mailIndex + 1) % (numberOfGroups);
+        return mailsToSend;
+    }
+
+    private List<VictimGroup> makeGroups(int nbGroups, List<String> victims){
+        List<VictimGroup> groups = new ArrayList<>();
+
+        Collections.shuffle(victims);
+
+        var victimsIterator = victims.iterator();
+
+        for(int i = 0; i < nbGroups; i++){
+            var newVictimGroup = new VictimGroup();
+            newVictimGroup.Sender = victimsIterator.next();
+            groups.add(newVictimGroup);
         }
 
-        */
+        var groupsIterator = groups.iterator();
 
+        while(victimsIterator.hasNext()){
+            if(!groupsIterator.hasNext()){
+                groupsIterator = groups.iterator();
+            }
+            groupsIterator.next().Recipients.add(victimsIterator.next());
+        }
 
-        return mailsToSend;
+        return groups;
+    }
+
+    private class VictimGroup{
+        public String Sender;
+        public List<String> Recipients;
     }
 
 }

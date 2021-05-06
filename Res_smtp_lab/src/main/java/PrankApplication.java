@@ -1,7 +1,7 @@
 import config.ConfigurationFileService;
 import config.IConfigurationService;
 import mail.IMailClientService;
-import mail.MailModel;
+import mail.Mail;
 import mail.SmtpClientService;
 import prankCampagne.IPrankService;
 import prankCampagne.PrankService;
@@ -27,8 +27,8 @@ public class PrankApplication {
 
         IMailClientService mailClientService = new SmtpClientService(configurationService);
 
-        IPrankService prankService = new PrankService(prankMessageProviderService, victimsProviderService);
-        List<MailModel> mailsForCampagne = prankService.getMailsForCampagne();
+        IPrankService prankService = new PrankService(prankMessageProviderService, victimsProviderService, configurationService);
+        List<Mail> mailsForCampagne = prankService.getMailsForCampagne();
 
         //envoie de tout les mail crées
         for(var mail : mailsForCampagne){

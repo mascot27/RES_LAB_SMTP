@@ -1,12 +1,12 @@
 package prankCampagne;
 
-import mail.MailModel;
+import mail.Mail;
 
 import java.util.List;
 
 public interface IPrankService {
 
 
-    List<MailModel> getMailsForCampagne();
+    List<Mail> getMailsForCampagne();
 
 }

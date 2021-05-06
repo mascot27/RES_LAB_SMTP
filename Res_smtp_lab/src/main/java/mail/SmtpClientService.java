@@ -30,7 +30,7 @@ public class SmtpClientService implements IMailClientService {
     }
 
     @Override
-    public void sendMail(MailModel mail) {
+    public void sendMail(Mail mail) {
         // see: https://www.javatpoint.com/socket-programming
         // https://www.codejava.net/java-se/networking/java-socket-client-examples-tcp-ip
         // https://tools.ietf.org/html/rfc5321#appendix-D
