@@ -18,7 +18,22 @@ Il faut rentrer manuellement les 3 fichiers suivant pour que le programme genèr
 - le fichier message.utf8 qui va contenir le sujet du message à la première ligne et le corps du message, les caractère spéciaux sont supporté et il n'y pas besoin de spécifé que c'est un sujet pour la première ligne.
 - le fichier victims.utf8, qui va contenir toutes les addresses mail à pieger. 
 
-### Mise en place du serveur Mock
+### Mise en place et utilisation du serveur Mock
+
+Mock server  permet de tester des envois de mails sans les envoyer réellement. Le serveur  mock  va recevoir les mails envoyés et les afficher sur une interface web sont qu'ils soient réellement envoyés à leur destinataire.
+
+#### pour le lancer
+
+Dans le dossier MockMock il y une image docker que l'on va devoir construire avec la commande :
+
+- docker build -t res-mockmock .
+
+Quand l'image est construite on va utilise la commande suivante pour lancer le serveur mock:
+
+- docker run -p 2525:2525 -p 8282:8282 res-mockmock
+
+Ici, le serveur SMTP sera disponible sur le port 2525 et l'application web sera consultable à l'adresse "localhost:8282"
+
 
 
 
