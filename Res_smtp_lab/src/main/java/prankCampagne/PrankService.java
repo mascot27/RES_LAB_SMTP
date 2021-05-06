@@ -71,7 +71,7 @@ public class PrankService implements IPrankService {
 
     private class VictimGroup{
         public String Sender;
-        public List<String> Recipients;
+        public List<String> Recipients = new ArrayList<>();
     }
 
 }

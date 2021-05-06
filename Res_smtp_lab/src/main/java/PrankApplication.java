@@ -30,7 +30,6 @@ public class PrankApplication {
         IPrankService prankService = new PrankService(prankMessageProviderService, victimsProviderService, configurationService);
         List<Mail> mailsForCampagne = prankService.getMailsForCampagne();
 
-        //envoie de tout les mail crées
         for(var mail : mailsForCampagne){
             mailClientService.sendMail(mail);
         }
