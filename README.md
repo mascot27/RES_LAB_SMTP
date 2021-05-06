@@ -15,8 +15,12 @@ Le programme se connecte en local ("localhost") sur le port 25 sur un serveur Mo
 Il faut rentrer manuellement les 3 fichiers suivant pour que le programme genère correctement les emails.
 
 - le fichier config.properties contient l'adresse et le port du serveur SMTP ainsi que le nombre de groupe à piéger
+![interieur fichier config](https://user-images.githubusercontent.com/58049740/117338767-3d839a00-ae9f-11eb-8df3-b82b3f88b850.PNG)
 - le fichier message.utf8 qui va contenir le sujet du message à la première ligne et le corps du message, les caractère spéciaux sont supporté et il n'y pas besoin de spécifé que c'est un sujet pour la première ligne.
+
 - le fichier victims.utf8, qui va contenir toutes les addresses mail à pieger. 
+
+
 
 ### Mise en place et utilisation du serveur Mock
 
