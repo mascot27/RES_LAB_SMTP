@@ -62,6 +62,14 @@ La console du serveru Mock va lui aussi afficher qu'un email est bien reçu
 
 ![preve recu mock](https://user-images.githubusercontent.com/58049740/117339910-9869c100-aea0-11eb-86b1-c6f29362ed72.PNG)
 
+## Descritpion de l'implémentation
+
+### Diagramme de classe
+
+![ulm](https://user-images.githubusercontent.com/58049740/117340329-0adaa100-aea1-11eb-8781-6a186a7ab389.PNG)
+
+
+
 
 
 
