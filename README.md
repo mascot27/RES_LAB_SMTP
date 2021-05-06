@@ -17,8 +17,9 @@ Il faut rentrer manuellement les 3 fichiers suivant pour que le programme genèr
 - le fichier config.properties contient l'adresse et le port du serveur SMTP ainsi que le nombre de groupe à piéger
 ![interieur fichier config](https://user-images.githubusercontent.com/58049740/117338767-3d839a00-ae9f-11eb-8df3-b82b3f88b850.PNG)
 - le fichier message.utf8 qui va contenir le sujet du message à la première ligne et le corps du message, les caractère spéciaux sont supporté et il n'y pas besoin de spécifé que c'est un sujet pour la première ligne.
-
+![interieur fichier message](https://user-images.githubusercontent.com/58049740/117338810-4ffdd380-ae9f-11eb-93d2-7d0df216de64.PNG)
 - le fichier victims.utf8, qui va contenir toutes les addresses mail à pieger. 
+![intérieur fichier mail](https://user-images.githubusercontent.com/58049740/117338817-51c79700-ae9f-11eb-810c-787a5af95edb.PNG)
 
 
 
