@@ -1,20 +1,24 @@
-package prank;
+package prankCampagne;
 
 import mail.MailModel;
+import prankMessage.IPrankMessageProviderService;
+import victims.IVictimsProviderService;
 
 import java.util.*;
 
 public class PrankService implements IPrankService {
 
-    private final IPrankMessageService prankMessageService;
+    private final IPrankMessageProviderService prankMessageService;
+    private final IVictimsProviderService victimsProviderService;
 
-    public PrankService(IPrankMessageService prankMessageService) {
+    public PrankService(IPrankMessageProviderService prankMessageService, IVictimsProviderService victimsProviderService) {
         this.prankMessageService = prankMessageService;
+        this.victimsProviderService = victimsProviderService;
     }
 
 
     @Override
-    public List<MailModel> getMailsForCampagne(CampagneModel campagne) {
+    public List<MailModel> getMailsForCampagne() {
         var mailsToSend = new ArrayList<MailModel>();
         var numberOfGroups = campagne.Victims.size() / campagne.MinNumberOfVictimsByGroup;
         Collections.shuffle(campagne.Victims);

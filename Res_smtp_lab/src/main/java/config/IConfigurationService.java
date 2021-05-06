@@ -5,5 +5,5 @@ package config;
  */
 public interface IConfigurationService {
 
-    ConfigurationModel GetConfiguration();
+    ConnexionConfiguration GetConfiguration();
 }

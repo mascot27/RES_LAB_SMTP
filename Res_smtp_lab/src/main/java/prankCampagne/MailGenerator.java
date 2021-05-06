@@ -1,24 +1,19 @@
-package prank;
+package prankCampagne;
 
 import mail.MailModel;
-import readFiles.ReadMessage;
-import readFiles.ReadVictims;
+import prankMessage.Message;
+import readFiles.MessageFileReader;
+import readFiles.VictimsFileReader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 public class MailGenerator {
 
-    String addressVictims;
-    String message;
-    int nbGroup;
-
-    Vector<Person> listPerson = new Vector<>();
-    Vector<Message> listMessage = new Vector<>();
-    Vector<Group> listGroup = new Vector<>();
+    private String emailsOfVictims;
+    private String messagesAvailable;
+    private int nbGroup;
 
     public MailGenerator(String victimFile, String messageFile, int nbGroup) {
 
@@ -28,8 +23,8 @@ public class MailGenerator {
         try {
             // Le fichier d'entrée
             FileInputStream file = new FileInputStream(victimFile);
-            ReadVictims vict = new ReadVictims(file);
-            addressVictims = vict.getListVictims();
+            VictimsFileReader victimsFileReader = new VictimsFileReader(file);
+            emailsOfVictims = victimsFileReader.getListVictims();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,15 +34,15 @@ public class MailGenerator {
         try {
             // Le fichier d'entrée
             FileInputStream file = new FileInputStream(messageFile);
-            ReadMessage mess = new ReadMessage(file);
-            message = mess.getListMessage();
+            MessageFileReader messageFileReader = new MessageFileReader(file);
+            messagesAvailable = messageFileReader.getListMessage();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void FillAllMailToSend(Vector<MailModel> listMailToSend){
+    public void FillAllMailToSend(List<MailModel> listMailToSend){
         generator();
         createPrankMail(listMailToSend);
     }
@@ -58,22 +53,9 @@ public class MailGenerator {
     */
     public void generator(){
 
-        Scanner scanner = new Scanner(addressVictims);
-
-        //remplissage du vector de personne
-        while(scanner.hasNextLine())
-        {
-            String s = scanner.nextLine();
-            String[] arrOfStr = s.split("\n");
-            for(String line : arrOfStr){
-                listPerson.add(new Person(line));
-            }
-        }
-
-        scanner.close();
 
         //remplissage du vector de message
-        String[] temp = message.split("--\n");
+        String[] temp = messagesAvailable.split("--\n");
         for(String s : temp){
             String[] seperateSubject = s.split("\\R", 2);
             String subjet = seperateSubject[0];
@@ -103,10 +85,11 @@ public class MailGenerator {
         }
     }
 
+
     /*
    créer la liste des faux email avec tout le nécessaire à l'envoir sur un serveur SMTP
     */
-    public void createPrankMail(Vector<MailModel> listmailToSend){
+    public void createPrankMail(List<MailModel> listmailToSend){
 
         String subjet = "Salut!";
 

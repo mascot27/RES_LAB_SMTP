@@ -1,12 +1,19 @@
-import config.ConfigurationService;
+import config.ConfigurationFileService;
 import config.IConfigurationService;
 import mail.IMailClientService;
 import mail.MailModel;
 import mail.SmtpClientService;
-import prank.MailGenerator;
+import prankCampagne.IPrankService;
+import prankCampagne.MailGenerator;
+import prankCampagne.PrankService;
+import prankMessage.IPrankMessageProviderService;
+import prankMessage.PrankMessageService;
 import readFiles.ReadConfig;
+import victims.IVictimsProviderService;
+import victims.VictimsFilesProviderService;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrankApplication {
 
@@ -14,21 +21,32 @@ public class PrankApplication {
     private static final String MESSAGE_FILE = "config/message.utf8";
     private static final String VICTIMS_FILE = "config/victims.utf8";
 
-    private static Vector<MailModel> listeMailToSend = new Vector<>();
+    private static List<MailModel> listeMailToSend = new ArrayList<>();
 
     public static void main(String[] args) {
 
+        IVictimsProviderService victimsProviderService = new VictimsFilesProviderService(VICTIMS_FILE);
+        IConfigurationService configurationService = new ConfigurationFileService(CONFIG_FILE);
 
-        ReadConfig configuration = new ReadConfig(CONFIG_FILE);
+        var config = configurationService.GetConfiguration();
+
+        IPrankMessageProviderService prankMessageProviderService = new PrankMessageService();
+        IPrankService prankService = new PrankService(prankMessageProviderService, victimsProviderService);
+
+        IMailClientService mailClientService = new SmtpClientService(config);
+
+        List<MailModel> forgedMails = new ArrayList<>();
+        forgedMails = prankService.getMailsForCampagne();
 
         //lecture de tout les fichiers et stockage des données nécessaire
-        MailGenerator Mg = new MailGenerator(VICTIMS_FILE, MESSAGE_FILE, configuration.getNbGroup());
+        MailGenerator Mg = new MailGenerator(VICTIMS_FILE, MESSAGE_FILE, config.nbGroups);
 
         Mg.FillAllMailToSend(listeMailToSend);
 
-        IConfigurationService configurationReaderService = new ConfigurationService(configuration.getServerAddress(),configuration.getServerPort());
 
         var config = configurationReaderService.GetConfiguration();
+
+
         IMailClientService smtpClientService = new SmtpClientService(config);
 
 

@@ -3,12 +3,11 @@ package readFiles;
 import java.io.FileInputStream;
 import java.util.Scanner;
 
-public class ReadVictims {
+public class MessageFileReader {
 
+    String listMessage = "";
 
-    String listVictims ="";
-
-    public ReadVictims(FileInputStream file) {
+    public MessageFileReader(FileInputStream file) {
         readAll(file);
     }
 
@@ -21,17 +20,15 @@ public class ReadVictims {
             String s = scanner.nextLine();
             String[] arrOfStr = s.split("\n");
             for(String line : arrOfStr){
-                listVictims += line + "\n";
+                listMessage += line + "\n";
             }
         }
         scanner.close();
+
     }
 
-    public String getListVictims() {
-        return listVictims;
+    public String getListMessage() {
+        return listMessage;
     }
-
 
 }
-
-

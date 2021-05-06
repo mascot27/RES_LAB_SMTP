@@ -7,5 +7,10 @@ import java.io.IOException;
  * is responsible to communicate with the smtp server
  */
 public interface IMailClientService {
-    void sendMail(MailModel mailModel);
+
+    /**
+     * Send the mail
+     * @param mail mail to send
+     */
+    void sendMail(MailModel mail);
 }
