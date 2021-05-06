@@ -66,9 +66,36 @@ La console du serveru Mock va lui aussi afficher qu'un email est bien reçu
 
 ### Diagramme de classe
 
-![ulm](https://user-images.githubusercontent.com/58049740/117340329-0adaa100-aea1-11eb-8781-6a186a7ab389.PNG)
+![ulm](https://user-images.githubusercontent.com/58049740/117341629-ab7d9080-aea2-11eb-8c19-1a436e1a5d0f.PNG)
 
 
+Nous avons 5 package
+
+#### prankMessage
+
+Contient les classes permettant de lire le fichier de message ainsi que de le construire et de différencier le corps du sujt.
+
+#### prankCampagne
+
+Contient les classes pour générer les groupes de chaque différente campagne de faux messages.
+
+#### victims
+
+Contient les classes permettant de lire le fichier de victimes 
+
+#### mail
+
+Contient les classes qui vont forger les emails pour qu'ils puissent être ensuite correctement envoyé sur un serveur SMTP.
+
+#### config
+
+Contient les classes qui permettront de recevoir les bonnes valeurs de l'addresse ainsi que le port du serveur SMTP avec lequel communiquer
+
+
+PrankApplication est le main qu'il suffira d'exécuter pour que l'application fonctionne correctement.
+la console affichera seulement comment les détails des mails qui sont envoyé sur le serveur ainsi que la réponse du serveur.
+
+![preuve envoir intelij](https://user-images.githubusercontent.com/58049740/117343433-9570cf80-aea4-11eb-9683-e7a1ee3aa510.PNG)
 
 
 
