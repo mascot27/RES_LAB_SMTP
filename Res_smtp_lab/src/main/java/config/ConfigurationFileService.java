@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class ConfigurationFileService implements IConfigurationService {
 
-    private ConnexionConfiguration config;
+    private Configuration config;
 
     @Override
-    public ConnexionConfiguration GetConfiguration() {
+    public Configuration GetConfiguration() {
         return config;
     }
 
@@ -22,8 +22,8 @@ public class ConfigurationFileService implements IConfigurationService {
         }
     }
 
-    private ConnexionConfiguration ReadConfigFile(String configFilePath) throws IOException {
-        ConnexionConfiguration configuration = new ConnexionConfiguration();
+    private Configuration ReadConfigFile(String configFilePath) throws IOException {
+        Configuration configuration = new Configuration();
         FileInputStream file = new FileInputStream(configFilePath);
 
         Scanner scanner = new Scanner(file);

@@ -1,6 +1,7 @@
 package mail;
 
-import config.ConnexionConfiguration;
+import config.Configuration;
+import config.IConfigurationService;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,12 +17,16 @@ public class SmtpClientService implements IMailClientService {
     private final static Logger LOG = Logger.getLogger(SmtpClientService.class.getName());
     private final static String CL_RF = "\r\n";
 
-    private final ConnexionConfiguration configuration;
+    private final Configuration configuration;
     private BufferedReader in;
     private BufferedWriter out;
 
-    public SmtpClientService(ConnexionConfiguration config) {
+    public SmtpClientService(Configuration config) {
         configuration = config;
+    }
+
+    public SmtpClientService(IConfigurationService configurationService) {
+        configuration = configurationService.GetConfiguration();
     }
 
     @Override

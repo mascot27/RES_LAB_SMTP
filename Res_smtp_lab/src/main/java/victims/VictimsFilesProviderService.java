@@ -35,7 +35,8 @@ public class VictimsFilesProviderService implements IVictimsProviderService{
         while(scanner.hasNextLine())
         {
             String s = scanner.nextLine();
-            victims = Arrays.asList(s.split("\n"));
+            String[] arrOfStr = s.split("\n");
+            victims.addAll(Arrays.asList(arrOfStr));
         }
         scanner.close();
         file.close();
