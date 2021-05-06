@@ -21,11 +21,7 @@ public class SmtpClientService implements IMailClientService {
     private final Configuration configuration;
     private BufferedReader in;
     private BufferedWriter out;
-
-    public SmtpClientService(Configuration config) {
-        configuration = config;
-    }
-
+    
     public SmtpClientService(IConfigurationService configurationService) {
         configuration = configurationService.GetConfiguration();
     }
