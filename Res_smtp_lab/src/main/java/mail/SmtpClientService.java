@@ -6,6 +6,7 @@ import config.IConfigurationService;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -47,7 +48,10 @@ public class SmtpClientService implements IMailClientService {
             sendRcptTo(in, out, mail.Recipients);
             sendData(in, out);
             send(out, "From: " + mail.Sender);
-            send(out, "Subject: " + mail.Subject);
+            // php: mail($to, '=?utf-8?B?'.base64_encode($subject).'?=', $message, $headers)
+            send(out, "Subject: =?utf-8?B?" + Base64.getEncoder().encodeToString(mail.Subject.getBytes(StandardCharsets.UTF_8)) + "?=");
+            // set header Content-Type: text/plain; charset=utf-8
+            send(out, "Content-Type: text/plain; charset=utf-8");
             send(out, "To: " + String.join(",", mail.Recipients)+ CL_RF);
 
             send(out, mail.Body);
