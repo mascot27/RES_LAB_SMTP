@@ -8,7 +8,7 @@ Le but du labo est de générer un nombre d'émail qui sera déinit à partir de
 
 Le programme se connecte en local ("localhost") sur le port 25 sur un serveur MockMock qui sera lancé dans un conteneur Docker pour simuler un serveur SMTP.
 
-## Instrustion
+## Instruction
 
 ### Remplissage des fichiers de configuration
 
@@ -32,7 +32,7 @@ Il faut rentrer manuellement les 3 fichiers suivant pour que le programme genèr
 
 Mock server  permet de tester des envois de mails sans les envoyer réellement. Le serveur  mock  va recevoir les mails envoyés et les afficher sur une interface web sont qu'ils soient réellement envoyés à leur destinataire.
 
-#### pour le lancer
+####  Pour lancer le serveur Mock
 
 Dans le dossier MockMock il y une image docker que l'on va devoir construire avec la commande :
 
@@ -44,6 +44,22 @@ Quand l'image est construite on va utilise la commande suivante pour lancer le s
 
 Ici, le serveur SMTP sera disponible sur le port 2525 et l'application web sera consultable à l'adresse "localhost:8282"
 
+### Lancement de l'application PrankApp
+
+PrankApp est une application Java, pour la lancer il faut donc :
+
+- Posséder Java sur son ordinateur, ici java 8 suffit.
+- Se position dans le dossier racine .
+- Exécuter la commande "java -jar PrankApp.jar".
+
+On pourra voir le résultat de notre execution en visitant l'application web du serveur MockMock qui devrait afficher les emails envoyés
+
+![prevueMailWebMock](https://user-images.githubusercontent.com/58049740/117339930-9c95de80-aea0-11eb-954a-2bad250caef9.PNG)
+
+la console du serveru Mock va lui aussi afficher qu'un email est bien reçu
+
+
+![preve recu mock](https://user-images.githubusercontent.com/58049740/117339910-9869c100-aea0-11eb-86b1-c6f29362ed72.PNG)
 
 
 
