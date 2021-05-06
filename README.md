@@ -56,7 +56,8 @@ On pourra voir le résultat de notre execution en visitant l'application web du 
 
 ![prevueMailWebMock](https://user-images.githubusercontent.com/58049740/117339930-9c95de80-aea0-11eb-954a-2bad250caef9.PNG)
 
-la console du serveru Mock va lui aussi afficher qu'un email est bien reçu
+
+La console du serveru Mock va lui aussi afficher qu'un email est bien reçu
 
 
 ![preve recu mock](https://user-images.githubusercontent.com/58049740/117339910-9869c100-aea0-11eb-86b1-c6f29362ed72.PNG)
