@@ -1,4 +1,4 @@
-package prank;
+package prankMessage;
 
 public class Message {
     public String Title;

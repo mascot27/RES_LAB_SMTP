@@ -3,7 +3,8 @@ package config;
 /**
  * configuration model for the application
  */
-public class ConfigurationModel {
-    public int SmtpServerPort;
+public class Configuration {
     public String SmtpServerAddress;
+    public int SmtpServerPort;
+    public int nbGroups;
 }

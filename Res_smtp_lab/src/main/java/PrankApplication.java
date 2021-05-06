@@ -1,35 +1,38 @@
-import config.ConfigurationService;
+import config.ConfigurationFileService;
 import config.IConfigurationService;
 import mail.IMailClientService;
-import mail.MailModel;
+import mail.Mail;
 import mail.SmtpClientService;
-import prank.*;
+import prankCampagne.IPrankService;
+import prankCampagne.PrankService;
+import prankMessage.IPrankMessageProviderService;
+import prankMessage.PrankMessageService;
+import victims.IVictimsProviderService;
+import victims.VictimsFilesProviderService;
+
+import java.util.List;
 
 public class PrankApplication {
 
+    private static final String CONFIG_FILE = "config/config.properties";
+    private static final String MESSAGE_FILE = "config/message.utf8";
+    private static final String VICTIMS_FILE = "config/victims.utf8";
+
+
     public static void main(String[] args) {
 
-        // 0) initialize services
-        IConfigurationService configurationReaderService = new ConfigurationService();
-        IPrankMessageService prankMessageService = new PrankMessageService();
+        IVictimsProviderService victimsProviderService = new VictimsFilesProviderService(VICTIMS_FILE);
+        IConfigurationService configurationService = new ConfigurationFileService(CONFIG_FILE);
+        IPrankMessageProviderService prankMessageProviderService = new PrankMessageService(MESSAGE_FILE);
 
-        IPrankService prankService = new PrankService(prankMessageService);
+        IMailClientService mailClientService = new SmtpClientService(configurationService);
 
-        var config = configurationReaderService.GetConfiguration();
-        IMailClientService smtpClientService = new SmtpClientService(config);
+        IPrankService prankService = new PrankService(prankMessageProviderService, victimsProviderService, configurationService);
+        List<Mail> mailsForCampagne = prankService.getMailsForCampagne();
 
-        // 1) initialize campagne victims
-        CampagneModel campagne = new CampagneModel();
-        campagne.MinNumberOfVictimsByGroup = 3;
-        campagne.Victims.add("corentin.zeller@heig-vd.ch");
-        campagne.Victims.add("dponads.i@heig-vd.ch");
-        campagne.Victims.add("fred.dupont@heig-vd.ch");
-
-        // 2) send it to the moon
-        var mails = prankService.getMailsForCampagne(campagne);
-        for (MailModel mail : mails) {
-            smtpClientService.sendMail(mail);
+        //envoie de tout les mail crées
+        for(var mail : mailsForCampagne){
+            mailClientService.sendMail(mail);
         }
-
     }
 }
