@@ -16,7 +16,6 @@ Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génè
 
 ![changer config1](https://user-images.githubusercontent.com/58049740/117477371-3a031800-af5e-11eb-809a-ad9e213be752.PNG)
 
-
 ![changer config2](https://user-images.githubusercontent.com/58049740/117477434-4b4c2480-af5e-11eb-9c70-6d38aba6f9a9.PNG)
 
 ![changer config3](https://user-images.githubusercontent.com/58049740/117477468-51da9c00-af5e-11eb-8b39-bb681d742d0c.PNG)
@@ -116,8 +115,7 @@ PrankApplication est un projet Maven, on peut le construire et lancer les tests 
 - mvn clean test 
 - mvn clean package
 
-
-![mvn clean package](https://user-images.githubusercontent.com/58049740/117478159-155b7000-af5f-11eb-82cf-a344328fa0ee.PNG)
+![mvn clean package](https://user-images.githubusercontent.com/58049740/117479100-34a6cd00-af60-11eb-8b12-ad42449a8a19.PNG)
 
 
 
