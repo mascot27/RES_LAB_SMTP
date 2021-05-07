@@ -111,8 +111,12 @@ La console affichera seulement comment les détails des mails qui sont envoyé s
 
 PrankApplication est un projet Maven, on peut le construire et lancer les tests avec les commandes suivantes une fois situé dans le repo do projet ou se trouve le pom.xml :
 
-- mvn clean test 
-- mvn clean package
+```bash
+$ mvn clean test 
+```
+```bash
+$  mvn clean package
+```
 
 ![mvn clean package](https://user-images.githubusercontent.com/58049740/117479100-34a6cd00-af60-11eb-8b12-ad42449a8a19.PNG)
 
