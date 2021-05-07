@@ -109,7 +109,7 @@ La console affichera seulement comment les détails des mails qui sont envoyé s
 
 ### Maven
 
-PrankApplication est un projet Maven, on peut le construire et lancer les tests avec les commandes suivantes une fois situé dans le repo do projet ou se trouve le pom.xml :
+PrankApplication est un projet Maven, on peut le construire et lancer les tests avec les commandes suivantes une fois situé dans le repo do projet où se trouve le pom.xml :
 
 ```bash
 $ mvn clean test 
