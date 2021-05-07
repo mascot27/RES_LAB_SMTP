@@ -102,6 +102,7 @@ Contiens les classes qui vont forger les emails pour qu'ils puissent être ensui
 
 Contiens les classes qui permettront de recevoir les bonnes valeurs de l'adresse ainsi que le port du serveur SMTP avec lequel communiquer
 
+### Maven
 
 PrankApplication est le main qu'il suffira d'exécuter pour que l'application fonctionne correctement.
 La console affichera seulement comment les détails des mails qui sont envoyé sur le serveur ainsi que la réponse du serveur.
