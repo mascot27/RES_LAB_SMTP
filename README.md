@@ -12,7 +12,7 @@ Le programme se connecte en local ("localhost") sur le port 25 sur un serveur Mo
 
 ### Remplissage des fichiers de configuration
 
-Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config` situé dans le dossier 'Res_smtp_lab'.
+Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config` situé dans le dossier `Res_smtp_lab`.
 
 ![changer config1](https://user-images.githubusercontent.com/58049740/117477371-3a031800-af5e-11eb-809a-ad9e213be752.PNG)
 
