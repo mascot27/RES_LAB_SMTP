@@ -32,6 +32,7 @@ public class PrankMessageService implements IPrankMessageProviderService {
         Scanner scanner = new Scanner(file);
         //renvoie true s'il y a une autre ligne à lire
         Message currentMsg = new Message();
+        currentMsg.Text = "";
         while(scanner.hasNextLine())
         {
             String s = scanner.nextLine();
@@ -42,6 +43,7 @@ public class PrankMessageService implements IPrankMessageProviderService {
             else {
                 listMessage.add(currentMsg);
                 currentMsg = new Message();
+                currentMsg.Text = "";
             }
         }
         listMessage.add(currentMsg);
