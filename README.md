@@ -36,11 +36,15 @@ Mock server permet de tester des envois de mails sans les envoyer réellement. L
 
 Dans le dossier MockMock il y une image docker que l'on va devoir construire avec la commande :
 
-- $ docker build -t res-mockmock .
+```bash
+$ docker build -t res-mockmock .
+```
 
 Quand l'image est construite on va utiliser la commande suivante pour lancer le serveur mock:
 
-- $ docker run -p 2525:2525 -p 8282:8282 res-mockmock
+```bash
+$ docker run -p 2525:2525 -p 8282:8282 res-mockmock
+```
 
 Ici, le serveur SMTP sera disponible sur le port 2525 et l'application web sera consultable à l'adresse "localhost:8282"
 
