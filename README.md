@@ -33,7 +33,7 @@ Il faut modifier manuellement les 3 fichiers suivant pour que le programme gén�
 
 ![intérieur fichier mail](https://user-images.githubusercontent.com/58049740/117338817-51c79700-ae9f-11eb-810c-787a5af95edb.PNG)
 
-L'application a besoin de la présence de ces fichiers pour fonctionner à cet enplacement pour fonctionner
+L'application a besoin de la présence de ces fichiers à cet emplacement pour fonctionner.
 
 
 ### Mise en place et utilisation du serveur Mock
