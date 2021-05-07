@@ -12,7 +12,15 @@ Le programme se connecte en local ("localhost") sur le port 25 sur un serveur Mo
 
 ### Remplissage des fichiers de configuration
 
-Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config`.
+Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config` situé dans le dossier 'Res_smtp_lab'.
+
+![changer config1](https://user-images.githubusercontent.com/58049740/117477371-3a031800-af5e-11eb-809a-ad9e213be752.PNG)
+
+
+![changer config2](https://user-images.githubusercontent.com/58049740/117477434-4b4c2480-af5e-11eb-9c70-6d38aba6f9a9.PNG)
+
+![changer config3](https://user-images.githubusercontent.com/58049740/117477468-51da9c00-af5e-11eb-8b39-bb681d742d0c.PNG)
+
 
 - le fichier `config.properties` contient l'adresse et le port du serveur SMTP ainsi que le nombre de groupes à piéger
 
@@ -102,6 +110,14 @@ La console affichera seulement comment les détails des mails qui sont envoyé s
 
 
 ![preuve envoir intelij](https://user-images.githubusercontent.com/58049740/117343433-9570cf80-aea4-11eb-9683-e7a1ee3aa510.PNG)
+
+PrankApplication est un projet Maven, on peut le construire et lancer les tests avec les commandes suivantes une fois situé dans le repo do projet ou se trouve le pom.xml :
+
+- mvn clean test 
+- mvn clean package
+
+
+![mvn clean package](https://user-images.githubusercontent.com/58049740/117478159-155b7000-af5f-11eb-82cf-a344328fa0ee.PNG)
 
 
 
