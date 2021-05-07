@@ -102,14 +102,12 @@ Contiens les classes qui vont forger les emails pour qu'ils puissent être ensui
 
 Contiens les classes qui permettront de recevoir les bonnes valeurs de l'adresse ainsi que le port du serveur SMTP avec lequel communiquer
 
-### Maven
-
 PrankApplication est le main qu'il suffira d'exécuter pour que l'application fonctionne correctement.
 La console affichera seulement comment les détails des mails qui sont envoyé sur le serveur ainsi que la réponse du serveur.
 
-
-
 ![preuve envoir intelij](https://user-images.githubusercontent.com/58049740/117343433-9570cf80-aea4-11eb-9683-e7a1ee3aa510.PNG)
+
+### Maven
 
 PrankApplication est un projet Maven, on peut le construire et lancer les tests avec les commandes suivantes une fois situé dans le repo do projet ou se trouve le pom.xml :
 
