@@ -12,7 +12,7 @@ Le programme se connecte en local ("localhost") sur le port 25 sur un serveur Mo
 
 ### Remplissage des fichiers de configuration
 
-Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config` situé dans le dossier `Res_smtp_lab`.
+Il faut modifier manuellement les 3 fichiers suivant pour que le programme génère correctement les e-mails ceux-ci sont situé dans le dossier nommé `config` situé dans le dossier `Res_smtp_lab`.
 
 ![changer config1](https://user-images.githubusercontent.com/58049740/117477371-3a031800-af5e-11eb-809a-ad9e213be752.PNG)
 
@@ -33,6 +33,7 @@ Il faut rentrer manuellement les 3 fichiers suivant pour que le programme génè
 
 ![intérieur fichier mail](https://user-images.githubusercontent.com/58049740/117338817-51c79700-ae9f-11eb-810c-787a5af95edb.PNG)
 
+Le .jar a besoin de la présence de ces fichiers pour fonctionner à cet enplacement pour fonctionner
 
 
 ### Mise en place et utilisation du serveur Mock
