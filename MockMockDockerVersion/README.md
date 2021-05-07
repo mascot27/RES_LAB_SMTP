@@ -1,8 +1,10 @@
 # Docker for mockmock
 
-originals: https://github.com/tweakers/MockMock
+originals project is avalaible here: https://github.com/tweakers/MockMock
 
 ## Overview
+
+Containerized version of MockMock
 
 ## Requirements
 
