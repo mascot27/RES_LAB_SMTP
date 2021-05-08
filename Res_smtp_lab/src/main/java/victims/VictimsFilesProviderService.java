@@ -7,6 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * Concrete implementatation which will create a list of emails in the application and which
+ * can be used to send them jokes.
+ */
 public class VictimsFilesProviderService implements IVictimsProviderService{
 
     private List<String> victims;
@@ -16,7 +21,6 @@ public class VictimsFilesProviderService implements IVictimsProviderService{
             victims = readVictimFile(victimsFile);
         } catch (IOException e) {
             e.printStackTrace();
-            // TODO: use logger
         }
     }
 

@@ -9,5 +9,8 @@
         <module name="Res_smtp_lab" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Res_smtp_lab" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * concrete implementation of the interraction with the message provider service
+ */
 public class PrankMessageService implements IPrankMessageProviderService {
 
     List<Message> messages;
