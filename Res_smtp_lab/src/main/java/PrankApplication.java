@@ -12,6 +12,11 @@ import victims.VictimsFilesProviderService;
 
 import java.util.List;
 
+/**
+ * Application that will, thanks to 3 files: config.properties, message.utf8, victims.utf8,
+ * be able to create, in a random way, a list of fake emails that will be sent on an SMTP server.
+ * Each of these emails will then be sent to at least 2 people who are part of this list
+ */
 public class PrankApplication {
 
     private static final String CONFIG_FILE = "config/config.properties";

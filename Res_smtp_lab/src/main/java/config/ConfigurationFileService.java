@@ -4,6 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/**
+ * filled the configuration with the config.properties file passed in parameter
+ */
 public class ConfigurationFileService implements IConfigurationService {
 
     private Configuration config;

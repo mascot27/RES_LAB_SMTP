@@ -5,5 +5,9 @@ package config;
  */
 public interface IConfigurationService {
 
+
+    /**
+     * Get the needed configuration: port, address
+     */
     Configuration GetConfiguration();
 }

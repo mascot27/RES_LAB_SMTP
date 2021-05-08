@@ -7,6 +7,11 @@ import victims.IVictimsProviderService;
 
 import java.util.*;
 
+/**
+ * Concrete implementatation that generates a fake list of emails that are created from a
+ * message list file, email address and a configuration file including the number of
+ * people to whom each email will be sent
+ */
 public class PrankService implements IPrankService {
 
     private final IPrankMessageProviderService prankMessageService;
