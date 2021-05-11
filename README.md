@@ -62,7 +62,11 @@ PrankApp est une application Java, pour la lancer il faut donc :
 
 - Posséder Java sur son ordinateur, ici java 8 suffit.
 - Sa position dans le dossier racine .
-- Exécuter la commande "java -jar PrankApp.jar".
+
+![location jat](https://user-images.githubusercontent.com/58049740/117856286-b877f680-b28b-11eb-952f-238308891748.PNG)
+
+- Exécuter la commande "java -jar Res_smtop_labo-1.0.jar".
+
 
 On pourra voir le résultat de notre execution en visitant l'application web du serveur MockMock qui devrait afficher les e-mails envoyés
 
